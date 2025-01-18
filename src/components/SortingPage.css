@@ -1,0 +1,42 @@
+.SortingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align to top */
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+.Visualization {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align bars to bottom */
+  height: 400px; /* Adjust height as needed */
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 30px;
+  margin: 0 2px;
+  background-color: #7b1fa2; /* Dark purple */
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+.bar span {
+  position: relative;
+  bottom: -20px;
+  font-size: 14px;
+  color: #fff; /* Text color for numbers */
+  display: block; /* Ensure the number is always displayed */
+}

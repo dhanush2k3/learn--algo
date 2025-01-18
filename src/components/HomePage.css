@@ -1,0 +1,35 @@
+.HomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3e5f5; /* Light purple background */
+}
+
+.HomePage h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+  color: #7b1fa2; /* Dark purple */
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #7b1fa2; /* Dark purple */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #6a1b9a; /* Slightly lighter dark purple */
+}

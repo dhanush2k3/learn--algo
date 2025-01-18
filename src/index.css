@@ -1,0 +1,112 @@
+/* General Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3e5f5; /* Light purple background */
+}
+
+.App-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ControlPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.control-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.control-item {
+  margin: 0 10px;
+}
+
+.control-item label {
+  font-weight: bold;
+  color: #7b1fa2; /* Dark purple */
+  margin-right: 10px;
+}
+
+.control-item input[type="range"] {
+  margin: 0 10px;
+}
+
+.control-item button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #7b1fa2; /* Dark purple */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.control-item button:hover {
+  background-color: #6a1b9a; /* Slightly lighter dark purple */
+}
+
+.Visualization {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  background-color: white;
+  color: #7b1fa2; /* Dark purple */
+  font-size: 18px;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.bar {
+  width: 20px;
+  margin: 0 2px;
+  background-color: #7b1fa2; /* Dark purple */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+}
+
+.App-footer {
+  width: 100%;
+  background-color: #f3e5f5; /* Light purple */
+  padding: 20px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
