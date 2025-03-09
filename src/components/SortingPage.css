@@ -34,9 +34,6 @@
 }
 
 .bar span {
-  position: relative;
-  bottom: -20px;
   font-size: 14px;
   color: #fff; /* Text color for numbers */
-  display: block; /* Ensure the number is always displayed */
 }

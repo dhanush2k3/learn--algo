@@ -20,6 +20,12 @@ const SortingControlPanel = ({
     setArray(newArray);
   };
 
+  const handleSpeedChange = (e) => {
+    const newSpeed = e.target.value;
+    setSpeedValue(newSpeed);
+    setSpeed(newSpeed);
+  };
+
   return (
     <div className="ControlPanel">
       <div className="control-row">
@@ -44,7 +50,7 @@ const SortingControlPanel = ({
             min="50"
             max="1000"
             value={speedValue}
-            onChange={(e) => setSpeedValue(e.target.value)}
+            onChange={handleSpeedChange}
           />
         </div>
 
