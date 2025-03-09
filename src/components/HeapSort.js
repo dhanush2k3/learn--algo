@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const HeapSort = ({ array, speed, isPaused }) => {
   const isPausedRef = useRef(isPaused);
@@ -10,61 +10,89 @@ const HeapSort = ({ array, speed, isPaused }) => {
   useEffect(() => {
     const heapSort = async (arr) => {
       const bars = document.querySelectorAll(".bar");
-      const delay = speed;
+      const delay = 1000 - speed;
+      const colors = ["red", "blue", "yellow"]; // Define consistent colors
 
-      const heapify = async (arr, n, i) => {
-        let largest = i;
-        let left = 2 * i + 1;
-        let right = 2 * i + 2;
-
-        if (left < n && arr[left] > arr[largest]) {
-          largest = left;
-        }
-
-        if (right < n && arr[right] > arr[largest]) {
-          largest = right;
-        }
-
-        if (largest !== i) {
-          [arr[i], arr[largest]] = [arr[largest], arr[i]];
-          bars[i].style.height = `${arr[i] * 3}px`;
-          bars[largest].style.height = `${arr[largest] * 3}px`;
-
-          bars[i].textContent = arr[i];
-          bars[largest].textContent = arr[largest];
-
-          bars[i].style.backgroundColor = "red";
-          bars[largest].style.backgroundColor = "red";
-
-          await new Promise((resolve) => setTimeout(resolve, delay));
-          bars[i].style.backgroundColor = "#7b1fa2"; // Reset color
-          bars[largest].style.backgroundColor = "#7b1fa2"; // Reset color
-
-          await heapify(arr, n, largest);
+      const checkPaused = async () => {
+        while (isPausedRef.current) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
         }
       };
 
-      for (let i = Math.floor(arr.length / 2) - 1; i >= 0; i--) {
-        await heapify(arr, arr.length, i);
-      }
+      const heapify = async (arr, n, i) => {
+        let largest = i;
+        const left = 2 * i + 1;
+        const right = 2 * i + 2;
 
-      for (let i = arr.length - 1; i > 0; i--) {
-        [arr[0], arr[i]] = [arr[i], arr[0]];
-        bars[0].style.height = `${arr[0] * 3}px`;
-        bars[i].style.height = `${arr[i] * 3}px`;
+        if (left < n && arr[left] > arr[largest]) largest = left;
+        if (right < n && arr[right] > arr[largest]) largest = right;
 
-        bars[0].textContent = arr[0];
-        bars[i].textContent = arr[i];
+        if (largest !== i) {
+          [arr[i], arr[largest]] = [arr[largest], arr[i]];
 
-        bars[0].style.backgroundColor = "green";
-        bars[i].style.backgroundColor = "green";
+          // Change colors during heapify
+          if (bars[i])
+            bars[i].style.backgroundColor = colors[i % colors.length];
+          if (bars[largest])
+            bars[largest].style.backgroundColor =
+              colors[largest % colors.length];
 
-        await new Promise((resolve) => setTimeout(resolve, delay));
-        bars[0].style.backgroundColor = "#7b1fa2"; // Reset color
-        bars[i].style.backgroundColor = "#7b1fa2"; // Reset color
+          // Update bar heights and values
+          if (bars[i]) {
+            bars[i].style.height = `${arr[i] * 3}px`;
+            if (bars[i].querySelector("span"))
+              bars[i].querySelector("span").textContent = arr[i];
+          }
+          if (bars[largest]) {
+            bars[largest].style.height = `${arr[largest] * 3}px`;
+            if (bars[largest].querySelector("span"))
+              bars[largest].querySelector("span").textContent = arr[largest];
+          }
 
-        await heapify(arr, i, 0);
-      }
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          await checkPaused();
+          await heapify(arr, n, largest);
+
+          // Reset colors after heapify
+          if (bars[i]) bars[i].style.backgroundColor = "";
+          if (bars[largest]) bars[largest].style.backgroundColor = "";
+        }
+      };
+
+      const buildHeap = async (arr, n) => {
+        const startIndex = Math.floor(n / 2) - 1;
+        for (let i = startIndex; i >= 0; i--) {
+          await heapify(arr, n, i);
+        }
+      };
+
+      const sort = async (arr) => {
+        const n = arr.length;
+
+        await buildHeap(arr, n);
+
+        for (let i = n - 1; i > 0; i--) {
+          [arr[0], arr[i]] = [arr[i], arr[0]];
+
+          // Update bar heights and values
+          if (bars[0]) {
+            bars[0].style.height = `${arr[0] * 3}px`;
+            if (bars[0].querySelector("span"))
+              bars[0].querySelector("span").textContent = arr[0];
+          }
+          if (bars[i]) {
+            bars[i].style.height = `${arr[i] * 3}px`;
+            if (bars[i].querySelector("span"))
+              bars[i].querySelector("span").textContent = arr[i];
+          }
+
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          await checkPaused();
+          await heapify(arr, i, 0);
+        }
+      };
+
+      sort([...array]);
     };
 
     heapSort([...array]);

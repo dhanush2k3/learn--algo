@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const MergeSort = ({ array, speed, isPaused }) => {
   const isPausedRef = useRef(isPaused);
@@ -10,7 +10,14 @@ const MergeSort = ({ array, speed, isPaused }) => {
   useEffect(() => {
     const mergeSort = async (arr, l = 0, r = arr.length - 1) => {
       const bars = document.querySelectorAll(".bar");
-      const delay = speed;
+      const delay = 1000 - speed;
+      const colors = ["red", "blue", "yellow"]; // Define consistent colors
+
+      const checkPaused = async () => {
+        while (isPausedRef.current) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+      };
 
       const merge = async (arr, l, m, r) => {
         const n1 = m - l + 1;
@@ -18,100 +25,77 @@ const MergeSort = ({ array, speed, isPaused }) => {
         const L = new Array(n1);
         const R = new Array(n2);
 
-        for (let i = 0; i < n1; i++) {
-          L[i] = arr[l + i];
-        }
-        for (let j = 0; j < n2; j++) {
-          R[j] = arr[m + 1 + j];
-        }
+        for (let i = 0; i < n1; i++) L[i] = arr[l + i];
+        for (let j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
 
         let i = 0,
           j = 0,
           k = l;
 
         while (i < n1 && j < n2) {
-          if (isPausedRef.current) {
-            await new Promise((resolve) => {
-              const interval = setInterval(() => {
-                if (!isPausedRef.current) {
-                  clearInterval(interval);
-                  resolve();
-                }
-              }, 100);
-            });
+          await checkPaused();
+
+          if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+          } else {
+            arr[k] = R[j];
+            j++;
           }
 
-          const bar1 = bars[k];
-          const bar2 = bars[k];
-          if (bar1 && bar2) {
-            bar1.style.backgroundColor = "red"; // Highlight comparison
-            if (L[i] <= R[j]) {
-              arr[k] = L[i];
-              i++;
-            } else {
-              arr[k] = R[j];
-              j++;
-            }
-            bar2.style.height = `${arr[k] * 3}px`;
-            bar2.textContent = arr[k];
-            await new Promise((resolve) => setTimeout(resolve, delay));
-            bar2.style.backgroundColor = "#7b1fa2"; // Reset color
-            k++;
-          } else {
-            console.error("Bar element not found");
+          // Change colors during merging
+          if (bars[k])
+            bars[k].style.backgroundColor = colors[k % colors.length];
+
+          // Update bar heights and values
+          if (bars[k]) {
+            bars[k].style.height = `${arr[k] * 3}px`;
+            if (bars[k].querySelector("span"))
+              bars[k].querySelector("span").textContent = arr[k];
           }
+
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          k++;
         }
 
         while (i < n1) {
-          if (isPausedRef.current) {
-            await new Promise((resolve) => {
-              const interval = setInterval(() => {
-                if (!isPausedRef.current) {
-                  clearInterval(interval);
-                  resolve();
-                }
-              }, 100);
-            });
+          await checkPaused();
+
+          arr[k] = L[i];
+
+          if (bars[k])
+            bars[k].style.backgroundColor = colors[k % colors.length];
+
+          // Update bar heights and values
+          if (bars[k]) {
+            bars[k].style.height = `${arr[k] * 3}px`;
+            if (bars[k].querySelector("span"))
+              bars[k].querySelector("span").textContent = arr[k];
           }
-          const bar = bars[k];
-          if (bar) {
-            bar.style.backgroundColor = "red"; // Highlight comparison
-            arr[k] = L[i];
-            bar.style.height = `${arr[k] * 3}px`;
-            bar.textContent = arr[k];
-            await new Promise((resolve) => setTimeout(resolve, delay));
-            bar.style.backgroundColor = "#7b1fa2"; // Reset color
-            i++;
-            k++;
-          } else {
-            console.error("Bar element not found");
-          }
+
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          i++;
+          k++;
         }
 
         while (j < n2) {
-          if (isPausedRef.current) {
-            await new Promise((resolve) => {
-              const interval = setInterval(() => {
-                if (!isPausedRef.current) {
-                  clearInterval(interval);
-                  resolve();
-                }
-              }, 100);
-            });
+          await checkPaused();
+
+          arr[k] = R[j];
+
+          if (bars[k])
+            bars[k].style.backgroundColor = colors[k % colors.length];
+
+          // Update bar heights and values
+          if (bars[k]) {
+            bars[k].style.height = `${arr[k] * 3}px`;
+            if (bars[k].querySelector("span"))
+              bars[k].querySelector("span").textContent = arr[k];
           }
-          const bar = bars[k];
-          if (bar) {
-            bar.style.backgroundColor = "red"; // Highlight comparison
-            arr[k] = R[j];
-            bar.style.height = `${arr[k] * 3}px`;
-            bar.textContent = arr[k];
-            await new Promise((resolve) => setTimeout(resolve, delay));
-            bar.style.backgroundColor = "#7b1fa2"; // Reset color
-            j++;
-            k++;
-          } else {
-            console.error("Bar element not found");
-          }
+
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          j++;
+          k++;
         }
       };
 
