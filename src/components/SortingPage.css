@@ -1,39 +1,43 @@
 .SortingPage {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align to top */
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0; /* Light grey background */
-}
-
-.Visualization {
-  display: flex;
   justify-content: center;
-  align-items: flex-end; /* Align bars to bottom */
-  height: 400px; /* Adjust height as needed */
-  width: 100%;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.algorithm-selection h1 {
+  font-size: 28px;
   margin-bottom: 20px;
+  color: #333;
 }
 
-.bar {
+.algorithm-buttons {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  width: 30px;
-  margin: 0 2px;
-  background-color: #7b1fa2; /* Dark purple */
-  border-radius: 4px;
-  color: white;
-  font-size: 12px;
-  transition: height 0.3s ease, background-color 0.3s ease;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 
-.bar span {
-  font-size: 14px;
-  color: #fff; /* Text color for numbers */
+.algorithm-buttons button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.algorithm-buttons button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.algorithm-buttons button:active {
+  background-color: #3e8e41;
 }

@@ -13,6 +13,7 @@ const HomePage = () => {
         <Link to="/path-finding">
           <button className="home-button">Path Finding</button>
         </Link>
+       
       </div>
     </div>
   );

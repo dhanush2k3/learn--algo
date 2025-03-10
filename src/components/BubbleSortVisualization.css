@@ -1,0 +1,65 @@
+/* Main Visualization Container */
+.bubble-sort-visualization {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Bars Container */
+  .bars-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    height: 300px;
+    width: 80%;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  /* Bar Styling */
+  .bar {
+    width: 20px;
+    background-color: blue;
+    border-radius: 3px;
+    transition: height 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .bar:hover {
+    opacity: 0.8;
+  }
+  
+  /* Controls Section */
+  .controls {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .controls button {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .controls button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+  }
+  
+  .controls button:disabled {
+    background-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+  }
+  

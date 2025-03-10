@@ -1,69 +1,86 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import "./BubbleSort.css";
 
 const BubbleSort = ({ array, speed, isPaused }) => {
-  const isPausedRef = useRef(isPaused);
+  const [sortedArray, setSortedArray] = useState([...array]);
+  const [isSorting, setIsSorting] = useState(false); // Tracks sorting state
 
   useEffect(() => {
-    isPausedRef.current = isPaused;
+    // Sync sortedArray with the latest array when it's updated
+    setSortedArray([...array]);
+
+    // Reset all bar colors when the array changes
+    const bars = document.getElementsByClassName("bar");
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].style.backgroundColor = "blue";
+    }
+  }, [array]);
+
+  // Bubble Sort Algorithm with Visualization
+  const bubbleSort = async () => {
+    setIsSorting(true); // Prevent multiple sorts while active
+    const arrayCopy = [...sortedArray];
+    const bars = document.getElementsByClassName("bar");
+
+    if (!bars || bars.length === 0) {
+      console.error("Bars not found in the DOM");
+      setIsSorting(false);
+      return;
+    }
+
+    for (let i = 0; i < arrayCopy.length - 1; i++) {
+      for (let j = 0; j < arrayCopy.length - 1 - i; j++) {
+        if (!bars[j] || !bars[j + 1]) {
+          console.error(`Undefined bar at index ${j}`);
+          continue;
+        }
+
+        // Highlight the bars being compared
+        bars[j].style.backgroundColor = "red";
+        bars[j + 1].style.backgroundColor = "red";
+
+        // Delay for visualization
+        await new Promise((resolve) => setTimeout(resolve, speed));
+
+        if (arrayCopy[j] > arrayCopy[j + 1]) {
+          // Swap the array values
+          [arrayCopy[j], arrayCopy[j + 1]] = [arrayCopy[j + 1], arrayCopy[j]];
+
+          // Update bar heights in the DOM
+          bars[j].style.height = `${arrayCopy[j] * 3}px`;
+          bars[j + 1].style.height = `${arrayCopy[j + 1] * 3}px`;
+        }
+
+        // Reset bar colors
+        bars[j].style.backgroundColor = "blue";
+        bars[j + 1].style.backgroundColor = "blue";
+      }
+
+      // Mark the sorted part in green
+      if (bars[arrayCopy.length - 1 - i]) {
+        bars[arrayCopy.length - 1 - i].style.backgroundColor = "green";
+      }
+    }
+
+    // Mark all bars as sorted at the end
+    for (let i = 0; i < arrayCopy.length; i++) {
+      if (bars[i]) {
+        bars[i].style.backgroundColor = "green";
+      }
+    }
+
+    setSortedArray(arrayCopy); // Update the sorted array state
+    setIsSorting(false); // Allow new sorts after completion
+  };
+
+  useEffect(() => {
+    // Trigger Bubble Sort when not paused and sorting is requested
+    if (!isPaused && !isSorting) {
+      setTimeout(() => bubbleSort(), 100); // Add slight delay for updates
+    }
   }, [isPaused]);
 
-  useEffect(() => {
-    const bubbleSort = async (arr) => {
-      const bars = document.querySelectorAll(".bar");
-      const delay = 1000 - speed;
-      let swapped;
-      const colors = ["red", "blue", "yellow"]; // Define consistent colors
-
-      const checkPaused = async () => {
-        while (isPausedRef.current) {
-          await new Promise((resolve) => setTimeout(resolve, 100));
-        }
-      };
-
-      do {
-        swapped = false;
-        for (let i = 0; i < arr.length - 1; i++) {
-          await checkPaused();
-
-          if (arr[i] > arr[i + 1]) {
-            [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-            swapped = true;
-
-            // Change colors during swapping
-            if (bars[i])
-              bars[i].style.backgroundColor = colors[i % colors.length];
-            if (bars[i + 1])
-              bars[i + 1].style.backgroundColor =
-                colors[(i + 1) % colors.length];
-
-            // Update bar heights and values
-            if (bars[i]) {
-              bars[i].style.height = `${arr[i] * 3}px`;
-              if (bars[i].querySelector("span")) {
-                bars[i].querySelector("span").textContent = arr[i];
-              }
-            }
-            if (bars[i + 1]) {
-              bars[i + 1].style.height = `${arr[i + 1] * 3}px`;
-              if (bars[i + 1].querySelector("span")) {
-                bars[i + 1].querySelector("span").textContent = arr[i + 1];
-              }
-            }
-
-            await new Promise((resolve) => setTimeout(resolve, delay));
-
-            // Reset colors after swapping
-            if (bars[i]) bars[i].style.backgroundColor = "";
-            if (bars[i + 1]) bars[i + 1].style.backgroundColor = "";
-          }
-        }
-      } while (swapped);
-    };
-
-    bubbleSort([...array]);
-  }, [array, speed]);
-
-  return null;
+  return null; // Visualization is handled via parent component
 };
 
 export default BubbleSort;
