@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./SortingPage.css";
 
-const SortingPage = ({ handleAlgorithmClick }) => {
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState("");
+const SortingPage = () => {
+  const navigate = useNavigate();
 
-  // Handles algorithm selection and executes the corresponding function
+  // Handles the selection and triggers navigation to the specific algorithm
   const handleSelectAlgorithm = (algorithm) => {
-    setSelectedAlgorithm(algorithm); // Set the selected algorithm name
-    handleAlgorithmClick(algorithm); // Trigger the parent function for the specific algorithm
+    // Save the selected algorithm name
+    localStorage.setItem("selectedAlgorithm", algorithm);
+
+    if (algorithm === "bubbleSort") {
+      navigate("/sorting/bubble-sort");
+    } else if (algorithm === "quickSort") {
+      navigate("/sorting/quick-sort");
+    } else if (algorithm === "mergeSort") {
+      navigate("/sorting/merge-sort"); // Added Merge Sort navigation
+    } else if (algorithm === "selectionSort") {
+      navigate("/sorting/selection-sort");
+    } else if (algorithm === "insertionSort") {
+      navigate("/sorting/insertion-sort");
+    } else if (algorithm === "heapSort") {
+      navigate("/sorting/heap-sort");
+    }
   };
 
   return (

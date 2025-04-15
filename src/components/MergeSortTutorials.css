@@ -1,0 +1,85 @@
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Dialog Box Styling */
+.tutorial-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  max-width: 700px; /* Ensures a responsive design */
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
+}
+
+/* Dialog Title */
+.tutorial-box h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333; /* Neutral text color */
+}
+
+/* Content List Styling */
+.tutorial-box ul {
+  margin-left: 20px; /* Indent the list items */
+  padding-left: 0;
+}
+
+.tutorial-box li {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555; /* Slightly softer text color */
+}
+
+/* Tutorial Navigation Controls */
+.tutorial-controls {
+  display: flex;
+  justify-content: space-between; /* Positions Back, Next, and Close buttons */
+  margin-top: 20px;
+}
+
+.tutorial-controls button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #4caf50; /* Green button background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+/* Hover Effect */
+.tutorial-controls button:hover {
+  background-color: #45a049; /* Darker green for hover effect */
+}
+
+/* Disabled Button */
+.tutorial-controls button:disabled {
+  background-color: #ddd; /* Grey background for disabled buttons */
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

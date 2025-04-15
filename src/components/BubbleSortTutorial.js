@@ -6,45 +6,39 @@ const BubbleSortTutorial = ({ onClose }) => {
 
   const tutorialSteps = [
     {
-      title: "Introduction",
+      title: "What is Bubble Sort?",
       content: [
-        "Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.",
-        "This process is repeated until the list is sorted."
+        "Bubble Sort is a simple sorting algorithm that compares adjacent elements in a list and swaps them if they are out of order.",
+        "The process repeats until the list is sorted, with the largest elements 'bubbling' to the top of the array.",
       ],
     },
     {
-      title: "Why Use Bubble Sort?",
+      title: "Why is Bubble Sort Needed?",
       content: [
-        "Bubble Sort is easy to understand and implement.",
-        "It works well for small datasets where simplicity and clarity are important."
+        "Bubble Sort is easy to understand and implement, making it ideal for educational purposes.",
+        "It demonstrates fundamental sorting concepts such as comparison and swapping.",
       ],
     },
     {
-      title: "Step-by-Step Process",
+      title: "How Does Bubble Sort Work?",
       content: [
-        "1. Start with the first two elements in the array.",
-        "2. Compare them. If the first is greater than the second, swap them.",
-        "3. Move to the next pair of elements and repeat the process.",
-        "4. Continue this for all elements in the array.",
-        "5. After each pass, the largest unsorted element moves to its correct position.",
-        "6. Repeat until the array is fully sorted."
+        "1. Start by comparing the first two elements in the array.",
+        "2. Swap them if the first is larger than the second.",
+        "3. Move to the next pair of elements and repeat.",
+        "4. After each pass, the largest unsorted element is moved to its correct position.",
+        "5. Repeat the process until the entire array is sorted.",
       ],
     },
     {
-      title: "How to Use the Visualization",
+      title: "How Does This Program Operate?",
       content: [
-        "1. Click 'Generate Array' to create a new random array.",
-        "2. Adjust the sorting speed using the slider.",
-        "3. Click 'Bubble Sort' to see the algorithm in action.",
-        "4. Observe the bars being compared (red) and the sorted ones (green).",
-        "5. Click 'Reset' to reset the grid and try again."
-      ],
-    },
-    {
-      title: "Complexity",
-      content: [
-        "Time Complexity: O(n^2) for the worst and average case, O(n) for the best case (already sorted array).",
-        "Space Complexity: O(1), as it is an in-place sorting algorithm."
+        "1. The program generates a random array or allows custom user input.",
+        "2. The bars on the screen represent the numbers in the array.",
+        "3. The algorithm visually compares and swaps bars, with colors indicating progress:",
+        "   - Red: Bars being compared.",
+        "   - Blue: Default (unsorted) bars.",
+        "   - Green: Sorted bars.",
+        "4. Real-time comments explain each step of the algorithm.",
       ],
     },
   ];
@@ -65,24 +59,19 @@ const BubbleSortTutorial = ({ onClose }) => {
     <div className="tutorial-overlay">
       <div className="tutorial-box">
         <h2>{tutorialSteps[currentStep].title}</h2>
-        <ol>
-          {tutorialSteps[currentStep].content.map((point, index) => (
-            <li key={index}>{point}</li>
+        <ul>
+          {tutorialSteps[currentStep].content.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
-        </ol>
-        <div className="tutorial-buttons">
+        </ul>
+        <div className="tutorial-controls">
           <button onClick={handleBack} disabled={currentStep === 0}>
             Back
           </button>
-          <button
-            onClick={handleNext}
-            disabled={currentStep === tutorialSteps.length - 1}
-          >
+          <button onClick={handleNext} disabled={currentStep === tutorialSteps.length - 1}>
             Next
           </button>
-          <button onClick={onClose} className="close-button">
-            Close Tutorial
-          </button>
+          <button onClick={onClose}>Close</button>
         </div>
       </div>
     </div>
