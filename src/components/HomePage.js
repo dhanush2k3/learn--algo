@@ -13,7 +13,12 @@ const HomePage = () => {
         <Link to="/path-finding">
           <button className="home-button">Path Finding</button>
         </Link>
-       
+        <Link to="/graph-traversal">
+          <button className="home-button">Graph Traversal</button>
+        </Link>
+        <Link to="/arrays">
+          <button className="home-button">Arrays</button>
+        </Link>
       </div>
     </div>
   );

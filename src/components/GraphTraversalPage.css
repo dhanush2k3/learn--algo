@@ -1,0 +1,48 @@
+.graph-traversal-page {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .algorithm-selection {
+    margin-top: 50px;
+  }
+  
+  .algorithm-buttons {
+    margin-top: 20px;
+  }
+  
+  .algorithm-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .algorithm-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  .visualization {
+    margin-top: 50px;
+  }
+  
+  .back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    background-color: #d32f2f;
+  }
+  

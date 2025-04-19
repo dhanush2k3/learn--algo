@@ -1,0 +1,95 @@
+.chatbot-wrapper {
+    text-align: center;
+    margin-top: 10px;
+    
+  }
+  
+  /* Floating button for toggling chatbot */
+.toggle-chatbot-button {
+    position: fixed; /* Fix the button to a specific position on the screen */
+    bottom: 20px; /* Distance from the bottom of the page */
+    right: 20px; /* Distance from the right edge of the page */
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 15px 20px; /* Add padding for size */
+    border: none; /* Remove border */
+    border-radius: 50px; /* Make the button circular/rounded */
+    font-size: 16px; /* Font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for a floating effect */
+    cursor: pointer; /* Pointer cursor on hover */
+    z-index: 1000; /* Ensure the button stays on top of other elements */
+  }
+  
+  /* On hover effect for the button */
+  .toggle-chatbot-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Chatbot container */
+  .chatbot-container {
+    position: fixed; /* Fix the chatbot to a specific position on the screen */
+    bottom: 80px; /* Place the chatbot just above the button */
+    right: 20px; /* Align with the button */
+    width: 400px; /* Fixed width for the chatbot */
+    border-radius: 10px; /* Rounded edges for the chatbot */
+    border: 1px solid #ccc; /* Light border */
+    background-color: #f9f9f9; /* Light background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a floating effect */
+    overflow: hidden; /* Ensure content stays inside */
+    z-index: 999; /* Ensure it stays above other elements */
+  }
+  
+  /* Chat window */
+  .chat-window {
+    height: 300px;
+    overflow-y: auto; /* Add scroll for messages */
+    padding: 10px;
+  }
+  
+  /* Chat message styles */
+  .message-row {
+    margin: 10px 0;
+  }
+  
+  .message-bubble {
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 80%;
+  }
+  
+  .message-row.User .message-bubble {
+    background-color: #d1e7dd; /* Green bubble for user */
+    align-self: flex-end;
+  }
+  
+  .message-row.Bot .message-bubble {
+    background-color: #f8d7da; /* Red bubble for bot */
+    align-self: flex-start;
+  }
+  
+  /* Input area styles */
+  .input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: white;
+  }
+  
+  .input-box {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .send-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
