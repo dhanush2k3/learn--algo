@@ -1,0 +1,140 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.insertion-sort-page {
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+button,
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type="range"] {
+  width: 150px;
+}
+
+.array-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.array-element {
+  width: 60px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333;
+  background-color: #6c757d;
+  color: white;
+  transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+.array-element .value {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.array-element .index {
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.array-element.comparing {
+  background-color: yellow;
+}
+
+.array-element.insertion {
+  background-color: green;
+}
+
+.placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px dashed #ccc;
+}
+
+/* Current number text below the array */
+.current-number-container {
+  margin-top: 20px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.current-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+/* Animation for smooth entrance */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.legend {
+  margin-top: 20px;
+}
+
+.color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #333;
+}
+
+.color-box.comparing {
+  background-color: yellow; /* Highlight comparing numbers */
+}
+
+.color-box.insertion {
+  background-color: green; /* Highlight insertion position */
+}
+
+.steps {
+  margin-top: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.steps h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.steps ol {
+  list-style: decimal;
+  font-size: 14px;
+  text-align: left;
+}

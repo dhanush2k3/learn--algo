@@ -1,0 +1,98 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.heap-sort-page {
+  padding: 20px;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type="range"] {
+  margin-left: 10px;
+}
+
+.tree-container {
+  margin: auto;
+  width: 800px;
+  height: 500px;
+}
+
+.steps {
+  margin-top: 30px;
+  text-align: left;
+  max-width: 600px;
+  margin: auto;
+}
+
+.steps h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.steps ol {
+  list-style: decimal;
+  padding-left: 20px;
+  font-size: 16px;
+}
+.array-display {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.array-display h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.array-display p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  margin: 5px 0;
+}
+
+.steps {
+  margin-top: 30px;
+  text-align: left;
+  max-width: 600px;
+  margin: auto;
+}
+
+.steps h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.steps ol {
+  list-style: decimal;
+  padding-left: 20px;
+  font-size: 20px;
+}
+/* Node comparison color */
+.node {
+  fill: #6c757d; /* Default node color */
+  stroke: #333;
+  stroke-width: 2px;
+  transition: fill 0.3s, transform 0.3s; /* Smooth transitions for highlighting */
+}
+
+.node.compare {
+  fill: yellow;
+}
+
+.node.swap {
+  fill: red;
+}
+

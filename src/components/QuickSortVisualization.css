@@ -1,0 +1,188 @@
+.quick-sort-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .quick-sort-container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .controls {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .controls button,
+  .controls select,
+  .controls input {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #adb5bd;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .controls input {
+    flex: 1;
+    max-width: 300px;
+    border-color: #ced4da;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  select {
+    background-color: white;
+  }
+  
+  select:hover {
+    border-color: #6c757d;
+  }
+  
+  button:disabled,
+  select:disabled,
+  input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+  }
+  
+  .array-display {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .index-box {
+    width: 60px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .index-box:hover {
+    transform: scale(1.1);
+  }
+  
+  .index-box.pivot {
+    background-color: #ffc107;
+  }
+  
+  .index-box.highlight {
+    background-color: #f44336;
+  }
+  
+  .index-box.swap-animation {
+    animation: swap 1.5s ease-in-out;
+    background-color: #4caf50; /* Green color for swapped numbers */
+  }
+  
+  .comments {
+    margin-top: 20px;
+    text-align: left;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comments h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #495057;
+  }
+  
+  .comments p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #212529;
+  }
+  
+  @keyframes smoothSwap {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translate(-10px, -10px); /* Diagonal upward movement */
+    }
+    75% {
+      transform: translate(10px, -10px); /* Diagonal downward movement */
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .index-box.swap-animation {
+    animation: smoothSwap 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #4caf50; /* Green for swapped numbers */
+    transition: background-color 0.5s ease-in-out, transform 1.5s ease-in-out;
+  }
+  
+  .index-box.highlight {
+    background-color: #f44336; /* Red for comparing numbers */
+    transition: background-color 0.5s ease-in-out;
+  }
+  
+  .index-box.pivot {
+    background-color: #ffc107; /* Yellow for pivot */
+    transition: background-color 0.5s ease-in-out;
+  }
+  
+  .index-box {
+    width: 60px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out, background-color 0.5s ease-in-out;
+  }
+  
+  .array-display {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  

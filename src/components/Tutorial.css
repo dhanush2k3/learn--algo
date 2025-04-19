@@ -1,0 +1,97 @@
+/* Tutorial Overlay */
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Tutorial Modal Box */
+.tutorial-box {
+  width: 90%;
+  max-width: 700px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tutorial-box h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #4caf50;
+}
+
+/* Ordered List */
+.tutorial-box ol {
+  text-align: left;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.tutorial-box ol li {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Tutorial Buttons */
+.tutorial-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tutorial-buttons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tutorial-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.tutorial-buttons button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.tutorial-buttons button:not(:disabled):hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.tutorial-buttons .close-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.tutorial-buttons .close-button:hover {
+  background-color: #d32f2f;
+}

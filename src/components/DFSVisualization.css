@@ -1,0 +1,179 @@
+.DFSVisualization {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  #tree-container {
+    
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    width: 1000px;
+    height: 600px;
+    position: relative;
+  }
+  
+  .control-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .control-button:hover {
+    background-color: #0056b3;
+  }
+  
+  textarea {
+    margin-top: 20px;
+    width: 80%;
+    resize: none;
+  }
+  
+  .steps-container {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .steps-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .steps-container li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  /* General Button Style */
+.action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Input Section Style */
+  .input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text inputs to the left */
+    margin: 20px;
+  }
+  
+  .input-section h3 {
+    margin: 10px 0;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Center Inputs and Buttons */
+  .custom-use-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding: 20px;
+  }
+  
+  .custom-use-container div {
+    margin-bottom: 15px; /* Add spacing between elements */
+  }
+  
+  .custom-use-container input {
+    padding: 8px;
+    font-size: 14px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+  }
+  
+  .steps-container {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .steps-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .steps-container li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  /* Graph Container */
+  #graph-container {
+    border: 1px solid #ddd;
+    width: 1000px; /* Expanded width for better visualization */
+    height: 600px;
+    margin-bottom: 20px;
+  }
+  /* Flexbox Container for Horizontal Alignment */
+.horizontal-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping if the content overflows */
+    justify-content: center; /* Center all elements horizontally */
+    align-items: center; /* Align elements vertically */
+    gap: 20px; /* Space between elements */
+    margin-top: 20px;
+  }
+  
+  /* Buttons Style */
+  .action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Inputs Style */
+  .input-field {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }
+  
+  .input-section h3 {
+    margin: 0 10px; /* Add spacing around labels */
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Center the Graph and Inputs */
+  #graph-container {
+    border: 1px solid #ddd;
+    width: 1000px; /* Adjust width for better visualization */
+    height: 600px;
+    margin: 20px auto; /* Center horizontally */
+  }
+  

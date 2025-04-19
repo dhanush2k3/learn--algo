@@ -1,46 +1,54 @@
 import React, { useState } from "react";
-import PathFindingControlPanel from "./PathFindingControlPanel";
-import PathfindingVisualization from "./PathfindingVisualization";
-import "./PathFindingPage.css";
+import Pathfinding from "./PathfindingVisualization"; // Dijkstra's component
+import AStarPathfinding from "./AStarPathfindingVisualization"; // A* component
+import "./PathFindingPage.css"; // Your existing styles
 
-const PathFindingPage = () => {
-  const [graph, setGraph] = useState(new Map());
-  const [startNode, setStartNode] = useState("");
-  const [endNode, setEndNode] = useState("");
-  const [algorithm, setAlgorithm] = useState(null);
-  const [isPaused, setIsPaused] = useState(false);
+const PathfindingPage = () => {
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState(""); // Tracks which algorithm is selected
 
-  const handleStartAlgorithm = (algo) => {
-    setIsPaused(false);
-    setAlgorithm(algo);
-  };
-
-  const handleReset = () => {
-    setIsPaused(true);
-    setGraph(new Map());
-    setAlgorithm(null);
+  const handleSelectAlgorithm = (algorithm) => {
+    setSelectedAlgorithm(algorithm);
   };
 
   return (
-    <div className="PathFindingPage">
-      <PathfindingVisualization
-        graph={graph}
-        startNode={startNode}
-        endNode={endNode}
-        algorithm={algorithm}
-        isPaused={isPaused}
-      />
-      <PathFindingControlPanel
-        setGraph={setGraph}
-        setStartNode={setStartNode}
-        setEndNode={setEndNode}
-        handleStartAlgorithm={handleStartAlgorithm}
-        isPaused={isPaused}
-        setIsPaused={setIsPaused}
-        handleReset={handleReset}
-      />
+    <div className="pathfinding-page">
+      {selectedAlgorithm === "" ? (
+        // Algorithm selection view
+        <div className="algorithm-selection">
+          <h1>Choose an Algorithm</h1>
+          <div className="algorithm-buttons">
+            <button onClick={() => handleSelectAlgorithm("dijkstra")}>
+              Dijkstra's Algorithm
+            </button>
+            <button onClick={() => handleSelectAlgorithm("astar")}>
+              A* Algorithm
+            </button>
+          </div>
+        </div>
+      ) : (
+        // Show the visualization for the selected algorithm
+        <div className="visualization">
+          <h1>
+            {selectedAlgorithm === "dijkstra"
+              ? "Dijkstra's Algorithm"
+              : "A* Algorithm"}{" "}
+            Visualization
+          </h1>
+          {selectedAlgorithm === "dijkstra" ? (
+            <Pathfinding /> // Dijkstra's visualization
+          ) : (
+            <AStarPathfinding /> // A* visualization
+          )}
+          <button
+            onClick={() => setSelectedAlgorithm("")}
+            className="back-button"
+          >
+            Back to Selection
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default PathFindingPage;
+export default PathfindingPage;

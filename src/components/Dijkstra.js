@@ -1,106 +1,76 @@
-import { useEffect, useRef } from "react"; // Removed 'React' as it's unused
+export const dijkstra = (grid, startNode, endNode) => {
+  const visitedNodesInOrder = [];
+  const unvisitedNodes = [];
 
-const Dijkstra = ({ graph, startNode, endNode, isPaused }) => {
-  const isPausedRef = useRef(isPaused);
+  // Initialize all nodes
+  for (const row of grid) {
+    for (const node of row) {
+      node.distance = Infinity;
+      node.previousNode = null;
+      unvisitedNodes.push(node);
+    }
+  }
+  startNode.distance = 0;
 
-  useEffect(() => {
-    isPausedRef.current = isPaused;
-  }, [isPaused]);
+  while (unvisitedNodes.length > 0) {
+    // Sort unvisited nodes by distance
+    unvisitedNodes.sort((a, b) => a.distance - b.distance);
+    const currentNode = unvisitedNodes.shift();
 
-  useEffect(() => {
-    const dijkstra = async (graph, startNode, endNode) => {
-      const nodes = Array.from(graph.keys());
-      const distances = {};
-      const previous = {};
-      const pq = new PriorityQueue();
+    // Skip walls
+    if (currentNode.isWall) continue;
 
-      nodes.forEach((node) => {
-        distances[node] = Infinity;
-        previous[node] = null;
-      });
+    // Stop if no valid path exists
+    if (currentNode.distance === Infinity) break;
 
-      distances[startNode] = 0;
-      pq.enqueue(startNode, 0);
+    // Mark as visited
+    currentNode.isVisited = true;
+    visitedNodesInOrder.push(currentNode);
 
-      while (!pq.isEmpty()) {
-        const { element: currentNode } = pq.dequeue();
+    // If we reached the endNode, terminate early
+    if (currentNode === endNode) break;
 
-        if (isPausedRef.current) {
-          await new Promise((resolve) => {
-            const interval = setInterval(() => {
-              if (!isPausedRef.current) {
-                clearInterval(interval);
-                resolve();
-              }
-            }, 100);
-          });
-        }
+    // Update neighboring nodes
+    updateUnvisitedNeighbors(currentNode, grid);
+  }
 
-        if (currentNode === endNode) break;
-
-        const neighbors = graph.get(currentNode);
-        for (const [neighbor, weight] of neighbors) {
-          const alt = distances[currentNode] + weight;
-
-          if (alt < distances[neighbor]) {
-            distances[neighbor] = alt;
-            previous[neighbor] = currentNode;
-            pq.enqueue(neighbor, alt);
-          }
-        }
-      }
-
-      const path = [];
-      let currentNode = endNode;
-
-      while (currentNode) {
-        path.unshift(currentNode);
-        currentNode = previous[currentNode];
-      }
-
-      console.log(path); // For debugging
-
-      return path;
-    };
-
-    dijkstra(graph, startNode, endNode);
-  }, [graph, startNode, endNode]);
-
-  return null;
+  return visitedNodesInOrder;
 };
 
-class PriorityQueue {
-  constructor() {
-    this.items = [];
-  }
-
-  enqueue(element, priority) {
-    const queueElement = { element, priority };
-    let added = false;
-
-    for (let i = 0; i < this.items.length; i++) {
-      if (queueElement.priority < this.items[i].priority) {
-        this.items.splice(i, 0, queueElement);
-        added = true;
-        break;
+const updateUnvisitedNeighbors = (node, grid) => {
+  const neighbors = getNeighbors(node, grid);
+  for (const neighbor of neighbors) {
+    if (!neighbor.isVisited && !neighbor.isWall) {
+      const newDistance = node.distance + 1;
+      if (newDistance < neighbor.distance) {
+        neighbor.distance = newDistance;
+        neighbor.previousNode = node;
       }
     }
+  }
+};
 
-    if (!added) {
-      this.items.push(queueElement);
-    }
+const getNeighbors = (node, grid) => {
+  const { row, col } = node;
+  const neighbors = [];
+  if (row > 0) neighbors.push(grid[row - 1][col]);
+  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
+  if (col > 0) neighbors.push(grid[row][col - 1]);
+  if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
+  return neighbors;
+};
+
+export const getShortestPath = (endNode) => {
+  const shortestPath = [];
+  let currentNode = endNode;
+
+  // If no path exists, return an empty array
+  if (!endNode.previousNode) return shortestPath;
+
+  while (currentNode !== null) {
+    shortestPath.unshift(currentNode);
+    currentNode = currentNode.previousNode;
   }
 
-  dequeue() {
-    if (this.isEmpty()) {
-      return null;
-    }
-    return this.items.shift();
-  }
-
-  isEmpty() {
-    return this.items.length === 0;
-  }
-}
-
-export default Dijkstra;
+  return shortestPath;
+};

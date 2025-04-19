@@ -1,0 +1,159 @@
+.selection-sort-page {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.array-box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.index-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: #6c757d;
+  color: white;
+  width: 50px;
+  height: 100px;
+  border-radius: 4px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.index-box .value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.index-box .index {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.index-box.highlighted {
+  background: orange;
+}
+
+.index-box.sorted {
+  background: green;
+  transform: scale(1.2);
+}
+
+.editor {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.execution-result {
+  margin-top: 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+}
+
+.execution-result h2 {
+  font-size: 18px;
+  color: #333;
+}
+
+.execution-result p,
+.execution-result ul {
+  font-size: 16px;
+}
+
+.execution-result ul {
+  list-style: none;
+  padding: 0;
+}
+
+.execution-result li {
+  margin-bottom: 10px;
+}
+
+.steps {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+}
+
+.steps li {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.run-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.run-button:hover {
+  background-color: #0056b3;
+}
+.editor-drawer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+  transition: height 0.3s ease-in-out;
+  height: 40px;
+  overflow: hidden;
+}
+
+.editor-drawer.open {
+  height: 400px;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.drawer-header .arrow {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.editor {
+  padding: 10px;
+}

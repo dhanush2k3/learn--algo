@@ -1,0 +1,114 @@
+/* Overall Grid Styling */
+.grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+}
+
+/* Node Styling */
+.node {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.node-visited {
+  background-color: #90ee90; /* Light green */
+}
+
+.node-shortest-path {
+  background-color: #add8e6; /* Light blue */
+}
+
+.node-wall {
+  background-color: #333; /* Dark gray for walls */
+}
+
+.node-start {
+  background-color: #4caf50; /* Green for the start node */
+  border: 2px solid #388e3c;
+}
+
+.node-end {
+  background-color: #f44336; /* Red for the end node */
+  border: 2px solid #d32f2f;
+}
+
+.node:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Header Styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Panel Styling */
+.button-panel {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.button-panel button {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-panel button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.button-panel button:active {
+  background-color: #3e8e41;
+  transform: translateY(0);
+}
+
+/* Results Section */
+.result {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: #e8f5e9; /* Light green */
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #2e7d32; /* Darker green for text */
+}
+
+.result-success p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.result span {
+  color: #1b5e20; /* Dark green for highlights */
+}
+
