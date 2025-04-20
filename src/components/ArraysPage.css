@@ -2,6 +2,8 @@
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 20px;
+    background-color: #f3e5f5;
+    height: 100vh;
   }
   
   .structure-selection {
@@ -9,7 +11,7 @@
   }
   
   .structure-buttons button {
-    background-color: #007bff;
+    background-color: #7322cf;
     color: white;
     border: none;
     padding: 10px 20px;

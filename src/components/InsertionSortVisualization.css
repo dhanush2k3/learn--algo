@@ -1,3 +1,4 @@
+/* General styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -6,6 +7,7 @@ body {
   padding: 0;
 }
 
+/* Center page styling */
 .insertion-sort-page {
   padding: 20px;
 }
@@ -14,6 +16,7 @@ h1 {
   color: #333;
 }
 
+/* Center the controls */
 .controls {
   display: flex;
   justify-content: center;
@@ -31,46 +34,65 @@ input[type="range"] {
   width: 150px;
 }
 
+/* Center the array container */
 .array-container {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  position: relative;
+  justify-content: center; /* Centers the array horizontally */
+  align-items: center; /* Aligns elements vertically in the middle */
+  gap: 2px; /* Adds space between the array elements */
+  flex-wrap: wrap; /* Allows wrapping for better layout */
+  margin: 20px auto; /* Centers array container */
 }
 
+/* Styling for array elements */
 .array-element {
-  width: 60px;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #333;
-  background-color: #6c757d;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  right: 200px;
+  margin: 10px 20px;
+  background-color: #3b82f6; /* Default color */
   color: white;
-  transition: transform 0.5s ease, background-color 0.5s ease;
+  border-radius: 5px;
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative; /* Relative positioning for index placement */
 }
 
+/* Styling the values */
 .array-element .value {
   font-size: 16px;
   font-weight: bold;
 }
 
+/* Styling the index */
 .array-element .index {
-  font-size: 12px;
-  color: #ccc;
-  margin-top: 5px;
+  position: absolute;
+  top: -35px;
+  bottom: 600px; /* Positions the index closer to the element */
+  left: 50%; /* Centers the index horizontally */
+  transform: translateX(-50%);
+  font-size: 0.8rem; /* Smaller font for index */
+  color: #666; /* Makes the index visually distinct */
 }
 
+/* Highlight current number */
+.array-element.current {
+  background-color: red; /* Current number */
+}
+
+/* Highlight comparing numbers */
 .array-element.comparing {
-  background-color: yellow;
+  background-color: rgb(68, 136, 190); /* Comparing numbers */
 }
 
+/* Highlight insertion position */
 .array-element.insertion {
-  background-color: green;
+  background-color: green; /* Final insertion position */
 }
 
+/* Placeholder styling for missing array elements during sorting */
 .placeholder {
   width: 50px;
   height: 50px;
@@ -78,30 +100,7 @@ input[type="range"] {
   border: 1px dashed #ccc;
 }
 
-/* Current number text below the array */
-.current-number-container {
-  margin-top: 20px;
-  animation: fadeInDown 1s ease-in-out;
-}
-
-.current-number {
-  font-size: 18px;
-  font-weight: bold;
-  color: red;
-}
-
-/* Animation for smooth entrance */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Legend styling */
 .legend {
   margin-top: 20px;
 }
@@ -115,13 +114,14 @@ input[type="range"] {
 }
 
 .color-box.comparing {
-  background-color: yellow; /* Highlight comparing numbers */
+  background-color: yellow;
 }
 
 .color-box.insertion {
-  background-color: green; /* Highlight insertion position */
+  background-color: green;
 }
 
+/* Steps section styling */
 .steps {
   margin-top: 20px;
   max-width: 800px;

@@ -25,7 +25,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  background: #6c757d;
+  background: #5fadec;
   color: white;
   width: 50px;
   height: 100px;
@@ -40,7 +40,7 @@
 
 .index-box .index {
   font-size: 14px;
-  color: #ccc;
+  color: #000000;
   margin-top: 5px;
 }
 
