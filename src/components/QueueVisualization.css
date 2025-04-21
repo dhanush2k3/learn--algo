@@ -1,0 +1,61 @@
+.QueueVisualization {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  #queue-container {
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    height: 250px;
+    width: 800px;
+    background-color: #f9f9f9;
+  }
+  
+  .controls {
+    margin-top: 20px;
+  }
+  
+  .controls input {
+    margin: 10px;
+    padding: 5px;
+    font-size: 14px;
+    width: 120px;
+  }
+  
+  .controls button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .controls button:hover {
+    background-color: #45a049;
+  }
+  
+  .process-steps-container {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .process-steps-container h2 {
+    font-size: 20px;
+  }
+  
+  .process-steps-container ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+    font-size: 16px;
+  }
+  
+  .process-steps-container li {
+    margin: 5px 0;
+  }
+  

@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
+import * as d3 from "d3";
 import "./InsertionSortVisualization.css";
 
 const InsertionSortVisualization = () => {
   const [array, setArray] = useState([]);
-  const [customInput, setCustomInput] = useState(""); // Handle custom input
-  const [steps, setSteps] = useState([]); // Track sorting steps
-  const [sorting, setSorting] = useState(false); // Lock during sorting
-  const [currentValue, setCurrentValue] = useState(null); // Current number being sorted
-  const [comparingIndex, setComparingIndex] = useState(null); // Index being compared
-  const [insertionIndex, setInsertionIndex] = useState(null); // Final placement index
-  const [speed, setSpeed] = useState(1000); // Animation speed
+  const [customInput, setCustomInput] = useState("");
+  const [steps, setSteps] = useState([]);
+  const [sorting, setSorting] = useState(false);
+  const [speed, setSpeed] = useState(1000);
 
   useEffect(() => {
-    generateArray(); // Generate default random array on page load
+    generateArray();
   }, []);
+
+  useEffect(() => {
+    renderArrayD3();
+  }, [array]);
 
   const generateArray = () => {
     const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
     setArray(newArray);
     setSteps([]);
     setSorting(false);
-    setCurrentValue(null);
-    setComparingIndex(null);
-    setInsertionIndex(null);
   };
 
   const handleCustomInput = () => {
@@ -39,9 +38,6 @@ const InsertionSortVisualization = () => {
     setArray(inputArray);
     setSteps([]);
     setSorting(false);
-    setCurrentValue(null);
-    setComparingIndex(null);
-    setInsertionIndex(null);
   };
 
   const insertionSort = async () => {
@@ -51,71 +47,91 @@ const InsertionSortVisualization = () => {
 
     for (let i = 1; i < arrayCopy.length; i++) {
       const current = arrayCopy[i];
-      setCurrentValue(current); // Highlight the current number below the array
-      setInsertionIndex(null); // Clear insertion index for this step
-      newSteps.push(`Taking ${current} down to compare.`);
+      newSteps.push(`Current number: ${current}`);
       setSteps([...newSteps]);
-      arrayCopy[i] = null; // Temporarily remove the current value from the array
-      setArray([...arrayCopy]);
+      highlightCurrentD3(i);
       await delay(speed);
 
       let j = i - 1;
       while (j >= 0 && arrayCopy[j] > current) {
-        setComparingIndex(j); // Highlight the comparison index
-        newSteps.push(`Comparing ${current} with ${arrayCopy[j]}.`);
+        highlightComparisonD3(j, i);
+        newSteps.push(`Comparing ${current} with ${arrayCopy[j]}`);
         setSteps([...newSteps]);
         await delay(speed);
 
-        newSteps.push(`Shifting ${arrayCopy[j]} to index ${j + 1}.`);
+        newSteps.push(`Swapping ${arrayCopy[j]} and ${current}`);
         setSteps([...newSteps]);
-        arrayCopy[j + 1] = arrayCopy[j]; // Shift larger number to the right
-        setArray([...arrayCopy]);
+        renderSwapD3(j, j + 1);
         await delay(speed);
 
+        arrayCopy[j + 1] = arrayCopy[j];
         j--;
       }
 
-      setComparingIndex(null); // Clear comparison highlights
-      setInsertionIndex(j + 1); // Mark the final insertion position
-      arrayCopy[j + 1] = current; // Insert the current number
-      newSteps.push(`Placing ${current} at index ${j + 1}.`);
+      arrayCopy[j + 1] = current;
+      highlightInsertionD3(j + 1);
+      newSteps.push(`Placed ${current} at index ${j + 1}`);
       setSteps([...newSteps]);
       setArray([...arrayCopy]);
       await delay(speed);
-
-      setCurrentValue(null); // Clear the current number highlight for next step
     }
 
     setSorting(false);
-    setComparingIndex(null);
-    setInsertionIndex(null);
-    setCurrentValue(null);
+  };
+
+  const highlightCurrentD3 = (index) => {
+    const container = d3.select(".array-container");
+    container
+      .selectAll(".array-element")
+      .attr("class", (d, i) => (i === index ? "array-element current" : "array-element"));
+  };
+
+  const highlightComparisonD3 = (compareIndex, currentIndex) => {
+    const container = d3.select(".array-container");
+    container
+      .selectAll(".array-element")
+      .attr("class", (d, i) => {
+        if (i === currentIndex) return "array-element current";
+        if (i === compareIndex) return "array-element comparing";
+        return "array-element";
+      });
+  };
+
+  const highlightInsertionD3 = (index) => {
+    const container = d3.select(".array-container");
+    container
+      .selectAll(".array-element")
+      .attr("class", (d, i) => (i === index ? "array-element insertion" : "array-element"));
+  };
+
+  const renderSwapD3 = (index1, index2) => {
+    const container = d3.select(".array-container");
+    const elements = container.selectAll(".array-element");
+    const firstElement = elements.filter((_, i) => i === index1);
+    const secondElement = elements.filter((_, i) => i === index2);
+
+    const firstX = index1 * 50; // Calculate position based on index
+    const secondX = index2 * 50; // Calculate position based on index
+
+    firstElement.transition().duration(speed).style("transform", `translateX(${secondX}px)`);
+    secondElement.transition().duration(speed).style("transform", `translateX(${firstX}px)`);
+  };
+
+  const renderArrayD3 = () => {
+    const container = d3.select(".array-container");
+    container.selectAll("*").remove();
+
+    container
+      .selectAll(".array-element")
+      .data(array)
+      .enter()
+      .append("div")
+      .attr("class", "array-element")
+      .style("transform", (_, i) => `translateX(${i * 60}px)`) // Adjust for centering
+      .html((d, i) => `<span>${d}</span><div class="index"> ${i}</div>`);
   };
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  const renderArray = () => {
-    return (
-      <div className="array-container">
-        {array.map((value, index) => (
-          <div
-            key={index}
-            className={`array-element ${
-              comparingIndex === index ? "comparing" : ""
-            } ${insertionIndex === index ? "insertion" : ""}`}
-          >
-            {value !== null ? <div className="value">{value}</div> : <div className="placeholder"></div>}
-            <div className="index">Index: {index}</div>
-          </div>
-        ))}
-        {currentValue !== null && (
-          <div className="current-number-container">
-            <div className="current-number">Current: {currentValue}</div>
-          </div>
-        )}
-      </div>
-    );
-  };
 
   return (
     <div className="insertion-sort-page">
@@ -151,19 +167,7 @@ const InsertionSortVisualization = () => {
           />
         </div>
       </div>
-      {renderArray()}
-      <div className="legend">
-        <h3>Legend:</h3>
-        <p>
-          <span className="color-box current"></span> Current number being sorted (red)
-        </p>
-        <p>
-          <span className="color-box comparing"></span> Number being compared (yellow)
-        </p>
-        <p>
-          <span className="color-box insertion"></span> Insertion position (green)
-        </p>
-      </div>
+      <div className="array-container"></div>
       <div className="steps">
         <h2>Steps:</h2>
         <ol>

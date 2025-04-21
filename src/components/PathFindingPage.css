@@ -2,6 +2,8 @@
   text-align: center;
   font-family: Arial, sans-serif;
   padding: 20px;
+  background-color: #f3e5f5;
+  height: 100vh;
 }
 
 .algorithm-selection {

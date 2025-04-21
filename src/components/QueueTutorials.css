@@ -1,0 +1,69 @@
+
+  /* Tutorial overlay styles */
+  .tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .tutorial-box {
+    background-color: #fff;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tutorial-box h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .tutorial-box ul {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .tutorial-box ul li {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .tutorial-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .tutorial-controls button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .tutorial-controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .tutorial-controls button:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  

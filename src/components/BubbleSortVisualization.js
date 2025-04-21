@@ -183,13 +183,7 @@ const BubbleSortVisualization = () => {
         <p>{comments}</p>
       </div>
 
-      {/* Metrics */}
-      <div className="metrics">
-        <p>Execution Time: {executionTime ? `${executionTime} ms` : "N/A"}</p>
-        <p>Memory Usage: {memoryUsage ? `${memoryUsage} KB` : "N/A"}</p>
-        <p>UI Response Time: {responseTime ? `${responseTime} ms` : "N/A"}</p>
-      </div>
-
+ 
       {/* Default Buttons */}
       {!showControls && (
         <div className="default-buttons">

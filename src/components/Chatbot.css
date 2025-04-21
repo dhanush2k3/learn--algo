@@ -121,4 +121,22 @@
     background-color: #2563eb;
   }
   
- 
+ /* Style for the toggle button */
+.chat-toggle-button {
+  position: fixed;
+  bottom: 1rem; /* Places the button 1rem from the bottom */
+  left: 1rem;   /* Places the button 1rem from the left */
+  padding: 0.75rem 1.5rem;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s background-color;
+  z-index: 1000; /* Ensures it appears above other elements */
+}
+
+.chat-toggle-button:hover {
+  background-color: #2563eb;
+}
