@@ -5,7 +5,7 @@ import "./HomePage.css";
 const HomePage = () => {
   return (
     <div className="HomePage">
-      <h1>Welcome to Learn Algo</h1>
+      <h1>Welcome to Algorithm visualizer</h1>
       <div className="buttons">
         <Link to="/sorting">
           <button className="home-button">Sorting</button>

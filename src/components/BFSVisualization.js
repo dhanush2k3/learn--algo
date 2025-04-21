@@ -102,15 +102,35 @@ const BFSVisualization = () => {
       .join("svg")
       .attr("width", width)
       .attr("height", height);
- 
+
+    // Helper function to compute the offset coordinates so that lines start/end at the circle's edge.
+    // Node radius is 20.
+    const getOffsetCoords = (d, isSource) => {
+      const sourceNode = graph.nodes.find((node) => node.id === d.source);
+      const targetNode = graph.nodes.find((node) => node.id === d.target);
+      const dx = targetNode.x - sourceNode.x;
+      const dy = targetNode.y - sourceNode.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance === 0)
+        return {
+          x: isSource ? sourceNode.x : targetNode.x,
+          y: isSource ? sourceNode.y : targetNode.y,
+        };
+      const offsetX = (dx / distance) * 20;
+      const offsetY = (dy / distance) * 20;
+      return isSource
+        ? { x: sourceNode.x + offsetX, y: sourceNode.y + offsetY }
+        : { x: targetNode.x - offsetX, y: targetNode.y - offsetY };
+    };
+
     svg
       .selectAll("line")
       .data(graph.edges)
       .join("line")
-      .attr("x1", (d) => graph.nodes.find((node) => node.id === d.source).x)
-      .attr("y1", (d) => graph.nodes.find((node) => node.id === d.source).y)
-      .attr("x2", (d) => graph.nodes.find((node) => node.id === d.target).x)
-      .attr("y2", (d) => graph.nodes.find((node) => node.id === d.target).y)
+      .attr("x1", (d) => getOffsetCoords(d, true).x)
+      .attr("y1", (d) => getOffsetCoords(d, true).y)
+      .attr("x2", (d) => getOffsetCoords(d, false).x)
+      .attr("y2", (d) => getOffsetCoords(d, false).y)
       .attr("stroke", "#ccc")
       .attr("stroke-width", 2);
 
@@ -138,12 +158,12 @@ const BFSVisualization = () => {
       .data(graph.nodes)
       .join("text")
       .attr("x", (d) => d.x)
-      .attr("y", (d) => d.y + 5)
+      .attr("y", (d) => d.y) // removed the +5 adjustment
+      .attr("dy", ".35em")  // added line for proper vertical centering
       .attr("text-anchor", "middle")
       .attr("fill", "#fff")
       .attr("font-size", "14px")
       .text((d) => d.id);
-    
   };
 
   const handleCustomNodes = () => {
@@ -189,7 +209,7 @@ const BFSVisualization = () => {
 
   return (
     <div className="BFSVisualization">
-      <h1>Breadth-First Search (BFS) Visualization</h1>
+      <h1></h1>
       <div id="graph-container"></div>
       <div className="controls">
         <button onClick={generateRandomConnectedGraph} className="control-button">
@@ -245,7 +265,7 @@ const BFSVisualization = () => {
           ))}
         </ul>
       </div>
-        </div>
+    </div>
   );
 };
 
